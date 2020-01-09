@@ -4,10 +4,11 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import androidx.navigation.fragment.NavHostFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,8 +80,8 @@ public class TaskFragment extends Fragment {
         if (context instanceof OnListFragmentInteractionListener) {
             mListener = (OnListFragmentInteractionListener) context;
         } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnListFragmentInteractionListener");
+            throw new RuntimeException(context.toString()
+                    + " must implement OnListFragmentInteractionListener");
         }
     }
 
@@ -104,4 +105,13 @@ public class TaskFragment extends Fragment {
         // TODO: Update argument type and name
         void onListFragmentInteraction(DummyItem item);
     }
+
+    // The callback makes the call to the activity to make the transition.
+    private void productClickCallback() {
+//        ProductListDirections.ViewProductDetails directions =
+//                ProductListDirections.navigateToProductDetail(product.getId());
+//        NavHostFragment.findNavController(this).navigate(directions);
+//        Navigation.findNavController(this).navigate(R.id.action_task_list_to_new_task);
+//        NavHostFragment.findNavController(this).navigate(R.id.action_task_list_to_new_task);
+    };
 }

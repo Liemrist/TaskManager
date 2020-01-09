@@ -9,12 +9,26 @@
         android:id="@+id/nav_home"
         android:name="com.example.taskmanager.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_nav_home_to_new_task"
+            app:destination="@id/newTaskFragment" />
+    </fragment>
     <fragment
         android:id="@+id/nav_settings"
         android:name="com.example.taskmanager.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/newTaskFragment"
+        android:name="com.example.taskmanager.NewTaskFragment"
+        android:label="fragment_new_task"
+        tools:layout="@layout/fragment_new_task" />
+    <fragment
+        android:id="@+id/taskFragment"
+        android:name="com.example.taskmanager.TaskFragment"
+        android:label="fragment_task_list"
+        tools:layout="@layout/fragment_task_list" />
 
 
 </navigation>
