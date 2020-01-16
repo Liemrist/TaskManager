@@ -10,18 +10,16 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.taskmanager.dummy.DummyContent;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity
-        implements TaskFragment.OnListFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.drawer_layout) public DrawerLayout drawer;
     @BindView(R.id.nav_view) NavigationView navigationView;
+
 
     private NavController navController;
     private AppBarConfiguration appBarConfiguration;
@@ -33,7 +31,7 @@ public class MainActivity extends AppCompatActivity
 
         ButterKnife.bind(this);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -55,11 +53,5 @@ public class MainActivity extends AppCompatActivity
         // Allows NavigationUI to support proper up navigation or the drawer layout
         // drawer menu, depending on the situation.
         return NavigationUI.navigateUp(navController, appBarConfiguration); // || super.onSupportNavigateUp();
-    }
-
-    @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
-        // TODO: add menu.
-        Snackbar.make(navigationView, item.content, Snackbar.LENGTH_SHORT).show();
     }
 }

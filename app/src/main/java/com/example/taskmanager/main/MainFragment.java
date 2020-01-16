@@ -1,4 +1,4 @@
-package com.example.taskmanager;
+package com.example.taskmanager.main;
 
 
 import android.os.Bundle;
@@ -13,6 +13,8 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.navigation.Navigation;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.taskmanager.R;
+import com.example.taskmanager.taskList.TaskListFragment;
 import com.google.android.material.tabs.TabLayout;
 
 import butterknife.BindView;
@@ -26,6 +28,8 @@ public class MainFragment extends Fragment {
     @BindView(R.id.tabLayout) TabLayout tabLayout;
 
     private Unbinder unbinder;
+    private TasksTabAdapter adapter;
+
 
     public MainFragment() {
         // Required empty public constructor
@@ -43,14 +47,14 @@ public class MainFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        TasksTabAdapter adapter = new TasksTabAdapter(
+        adapter = new TasksTabAdapter(
                 getChildFragmentManager(),
                 FragmentPagerAdapter.POSITION_UNCHANGED
         );
 
         // TODO: differentiate the data. (via params and newInstance)
-        adapter.addFragment(new TaskFragment(), getString(R.string.all));
-        adapter.addFragment(new TaskFragment(), getString(R.string.favorite));
+        adapter.addFragment(new TaskListFragment(), getString(R.string.all));
+        adapter.addFragment(new TaskListFragment(), getString(R.string.favorite));
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
@@ -63,6 +67,12 @@ public class MainFragment extends Fragment {
 
     @OnClick(R.id.addTaskFab)
     public void addTask(View view) {
-        Navigation.findNavController(view).navigate(R.id.action_nav_home_to_new_task);
+        String pageTitle = adapter.getPageTitle(tabLayout.getSelectedTabPosition()).toString();
+        boolean isFavorite = pageTitle.equals(getString(R.string.favorite));
+
+        MainFragmentDirections.ActionAddTask actionAddTask = MainFragmentDirections.actionAddTask(null);
+        actionAddTask.setIsFavorite(isFavorite);
+
+        Navigation.findNavController(view).navigate(actionAddTask);
     }
 }

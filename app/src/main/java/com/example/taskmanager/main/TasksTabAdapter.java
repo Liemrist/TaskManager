@@ -1,4 +1,4 @@
-package com.example.taskmanager;
+package com.example.taskmanager.main;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
